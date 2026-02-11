@@ -60,17 +60,14 @@ Este DSL permite:
 - Visualizar el resultado mediante Turtle Graphics.
 
 
-##Operadores de composición
+## Operadores de composición
 
 Sean:
-
 G₁ = ⟨Σ₁, ω₁, P₁, I₁⟩
 G₂ = ⟨Σ₂, ω₂, P₂, I₂⟩
 
-Unión
-
+- Unión :
 Combina ambos sistemas unificando alfabetos y reglas:
-
 G = G₁ ∪ G₂
 Σ = Σ₁ ∪ Σ₂
 ω = ω₁ ω₂
@@ -78,11 +75,12 @@ P = P₁ ∪ P₂
 
 Los parámetros de interpretación (angle, step, iterations) son definidos por el sistema resultante.
 
-Intercalación
+- Intercalación :
 
 Intercala los axiomas símbolo a símbolo:
-
-ω = interleave(ω₁, ω₂)
+w1 = a1a2a3....
+w2 = b1b2b3....
+ω = interleave(ω₁, ω₂) = a1b1a2b2a3b3....
 
 Las reglas se unifican como en la unión.
 
