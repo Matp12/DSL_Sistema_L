@@ -84,7 +84,7 @@ w2 = b1b2b3....
 
 Las reglas se unifican como en la unión.
 
-- Encapsulamiento
+- Encapsulamiento : 
 
 Permite ejecutar un sistema dentro de otro:
 
