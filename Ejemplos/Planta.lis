@@ -1,0 +1,8 @@
+lsystem Planta {
+  axiom: F
+  rules:
+    F -> F
+  angle: 25
+  step: 1
+  iterations: 2
+}

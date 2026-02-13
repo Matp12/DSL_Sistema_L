@@ -1,0 +1,17 @@
+encap
+lsystem Koch {
+axiom: F--F--F
+rules: F->F+F--F+F
+angle: 60
+step: 5
+iterations: 3
+}
+union
+lsystem Plant {
+axiom: X
+rules: X->F+[[X]-X]-F[-FX]+X
+F->FF
+angle: 25
+step: 4
+iterations: 5
+}

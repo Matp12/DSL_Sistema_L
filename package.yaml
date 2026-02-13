@@ -1,0 +1,20 @@
+name: tp-final
+version: 0.1.0.0
+license: BSD3
+author: ""
+maintainer: ""
+
+dependencies:
+- base >= 4.7 && < 5
+- directory
+- filepath
+- array
+
+executables:
+  TP_FINAL:
+    main: Main.hs
+    source-dirs:
+      - app
+      - src
+    build-tools:
+          - happy

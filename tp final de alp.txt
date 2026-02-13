@@ -1,0 +1,38 @@
+tp final de alp 
+básicamente un sistema L es un automata que toma una string y a cada carácter le aplica su correspondiente regla de derivación y se hace la cantidad de iteraciones que se indiquen.
+
+Ej: 
+lsystem Planta {
+  axiom: X
+  rules:
+    F -> FF
+    X -> F + X
+  angle: 25
+  step: 1
+  iterations: 2
+}
+
+X-> F + X -> FF + F + X
+
+
+---------------------------------
+Un Sistema-L (Lindenmayer System) se define formalmente como una cuádrupla:
+
+G=⟨Σ,ω,P,n⟩
+Σ Es un conjunto finito y no vacío de símbolos.
+Los símbolos representan estados abstractos del sistema (por ejemplo, segmentos, nodos, marcadores estructurales).
+
+ω Es una cadena inicial sobre el alfabeto Σ, que representa el estado inicial del sistema antes de aplicar las reglas de producción.
+
+P:Σ→Σ*
+Es una función que asigna a cada símbolo del alfabeto una cadena de símbolos.
+Sistema L determinístico Cada símbolo tiene exactamente una regla asociada.
+
+
+Además agrego los operadores:
+
+Unión : G=⟨Σ1∪Σ2, ω, P1∪P2⟩ donde w = w1w2
+
+Intercalación : w1 y w2 intercala(w1,w2) = a1b1a2b2.... y se usa P1 U P2
+
+Encapsulamiento : P -> encaps(G) (uso la producción de g dentro)

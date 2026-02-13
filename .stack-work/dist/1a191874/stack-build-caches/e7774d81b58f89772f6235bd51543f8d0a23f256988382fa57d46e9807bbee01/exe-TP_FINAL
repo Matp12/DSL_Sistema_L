@@ -1,0 +1,22 @@
+C:\Users\mateo\AppData\Local\Programs\stack\x86_64-windows\ghc-9.10.3\lib\x86_64-windows-ghc-9.10.3\rts-1.0.2\include\MachDeps.h:
+  hash: 94f383f2743e37d6240fdf24b33714450bccce7dc5d0aa8e593f26e1b8a3d4af
+? C:\Users\mateo\AppData\Local\Programs\stack\x86_64-windows\ghc-9.10.3\lib\x86_64-windows-ghc-9.10.3\rts-1.0.2\include\ghcautoconf.h
+: hash: 453828466605dfc52927652cbf0c3d45ae83e342a2b3e6810b1b5a5ecb7562a1
+? C:\Users\mateo\AppData\Local\Programs\stack\x86_64-windows\ghc-9.10.3\lib\x86_64-windows-ghc-9.10.3\rts-1.0.2\include\ghcversion.h
+: hash: 7038bb968ecc358729edd5d1e72a638409aaf5ea6ab13ce6ec7f253daa3b6529
+? C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\.stack-work\dist\1a191874\build\TP_FINAL\autogen\Paths_tp_final.hs
+: hash: 61d98c1a32e5d40d42e0cb64745f77677be43fa4c50c463e955a565973c65dcf
+C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\app\Main.hs:
+  hash: 09ed703c9250991680391c6f6140a7017c7a4d6c27ca61cbbfa2917b52a3350e
+C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\package.yaml:
+  hash: e07b0c6e79ee73effddaab643bdaeaa05c6bd63b37c838020649cfde74eee58d
+C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\src\AST.hs:
+  hash: bff225c590db6c243eaaa62f803cdb5af25d9d7549e711f7bbeae428530ba3cf
+C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\src\Eval.hs:
+  hash: 7dda7e5f6eaf80143712e9229c742a6be2f98ea5a4ce281cdcf779dcc80db59f
+C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\src\Parser.y:
+  hash: 33eb1bde928eec0374fff44e8718c2f2a7cf2e3ca13a44114e153bcdb4819737
+C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\src\Types.hs:
+  hash: 8b5b5b4c2ba1387ff80284105fdea23235f31e81fb8988e385f74480e3efbf86
+C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\tp-final.cabal:
+  hash: b244063134cf7ae9be68bf1209bde2458c1951f7b8f40f3af3bb028e13556315
