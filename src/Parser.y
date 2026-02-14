@@ -84,7 +84,7 @@ lexer (c:cs)
   -- palabras reservadas o identificadores
   | isAlpha c =
       let (name, rest) = span isAlphaNum (c:cs)
-      in keywordOrId name : lexer rest
+      in keywordOrId name ++ lexer rest
 
   -- números
   | isDigit c =
@@ -99,10 +99,10 @@ lexer (c:cs)
   | c == '{'  = TLBrace : lexer cs
   | c == '}'  = TRBrace : lexer cs
   | c == ':'  = TColon  : lexer cs
-  | c == '+' = TPlus : lexer cs
-  | c == '-' = TMinus : lexer cs
-  | c == '[' = TLBracket : lexer cs
-  | c == ']' = TRBracket : lexer cs
+  | c == '+' = TSym c : lexer cs
+  | c == '-' = TSym c : lexer cs
+  | c == '[' = TSym c : lexer cs
+  | c == ']' = TSym c : lexer cs
  
 
   | otherwise = error ("Unknown character: " ++ [c])
@@ -111,21 +111,21 @@ isArrow :: [Char] -> Bool
 isArrow  ('-':'>':_) = True     -- -> etc--
 isArrow _ = False
 
-keywordOrId :: String -> Token
+keywordOrId :: String -> [Token]
 keywordOrId s =
   case s of
-    "lsystem"     -> TLSystem
-    "axiom"       -> TAxiom
-    "rules"       -> TRules
-    "angle"       -> TAngle
-    "step"        -> TStep
-    "iterations"  -> TIterations
-    "union"       -> TUnion
-    "interleave"  -> TInterleave
-    "encap"       -> TEncap
-    "inherit"     -> TInherit
-    _ | (length s == 1) && isUpper (head s ) -> TSym (head s)
-      |otherwise     -> TId s
+    "lsystem"     -> [TLSystem]
+    "axiom"       -> [TAxiom]
+    "rules"       -> [TRules]
+    "angle"       -> [TAngle]
+    "step"        -> [TStep]
+    "iterations"  -> [TIterations]
+    "union"       -> [TUnion]
+    "interleave"  -> [TInterleave]
+    "encap"       -> [TEncap]
+    "inherit"     -> [TInherit]
+    _ | all isUpper s -> TSym (head s) : lexer (tail s)
+      |otherwise     -> [TId s]
 
 
 parseString :: String -> LSystem
