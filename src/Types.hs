@@ -15,6 +15,7 @@ data Token
   | TLBrace
   | TRBrace
   | TColon
+  | TSemicolon
   | TPlus 
   | TMinus 
   | TLBracket 

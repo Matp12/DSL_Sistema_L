@@ -41,17 +41,17 @@ runExample name = do
             input <- readFile fullPath
             let ast = parseString input
 
-           -- let result = eval ast
+            let result = eval ast
 
             putStrLn "\n=== Cadena Final ==="
-            print (parseString input)
-
-            --      putStrLn ("\n"++ (show (lexer input))) --TOKENS ANDAN           Falta Pretty Printer
-          {-  case result of
+            --   print (parseString input)          ---- Lexer Anda
+            --      putStrLn ("\n"++ (show (lexer input))) --TOKENS ANDAN
+            case result of
                 LSys name ax _ ang st it -> do
+                    putStrLn name
                     putStrLn ax
                     putStrLn ("\nAngle: " ++ show ang)
                     putStrLn ("Step: " ++ show st)
                     putStrLn ("Iterations: " ++ show it)
                 _ -> print result
-            -}
+          

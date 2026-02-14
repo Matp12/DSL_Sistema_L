@@ -28,6 +28,8 @@ import Data.Char
   TSym         { TSym $$ }
   TId           { TId $$ }
   TNum          { TNum $$ }
+  TSemicolon  { TSemicolon }
+
 
 %%
 
@@ -62,7 +64,7 @@ RuleList
   | RuleList Rule           { $1 ++ [$2] }
 
 Rule
-  : TSym TArrow WordLS       { ($1, $3) }
+  : TSym TArrow WordLS TSemicolon      { ($1, $3) }
 
 WordLS
   : WordLS TSym   { $1 ++ [$2] }
@@ -72,8 +74,17 @@ WordLS
 {
 -- LEXER
 
+skipComment :: String -> String
+skipComment [] = error "Unclosed comment"
+skipComment ('*':'/':cs) = cs
+skipComment (_:cs) = skipComment cs
+
 lexer :: String -> [Token]
 lexer [] = []
+
+-- bloques de comentario---
+lexer ('/':'*':cs) =
+  lexer (skipComment cs)
 
 lexer (c:cs)
   | isSpace c = lexer cs
@@ -103,7 +114,8 @@ lexer (c:cs)
   | c == '-' = TSym c : lexer cs
   | c == '[' = TSym c : lexer cs
   | c == ']' = TSym c : lexer cs
- 
+  | c == ';' = TSemicolon : lexer cs
+
 
   | otherwise = error ("Unknown character: " ++ [c])
 

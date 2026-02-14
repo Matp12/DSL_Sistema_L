@@ -1,8 +1,22 @@
 lsystem Planta {
-  axiom: F
+  axiom: X
   rules:
-    F -> -F
+    X -> -F;
+    F -> XF;
   angle: 25
   step: 1
-  iterations: 2
+  iterations: 4
 }
+
+/* union
+lsystem Arbol {
+  axiom: Y
+  rules:
+    Y -> X;
+    X -> Y;
+  angle: 30
+  step: 1
+  iterations: 3
+
+}
+*/

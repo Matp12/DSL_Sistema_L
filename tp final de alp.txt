@@ -5,8 +5,8 @@ Ej:
 lsystem Planta {
   axiom: X
   rules:
-    F -> FF
-    X -> F + X
+    F -> FF;
+    X -> F + X;
   angle: 25
   step: 1
   iterations: 2
