@@ -27,7 +27,6 @@ import Data.Char
   TColon        { TColon }
   TSym         { TSym $$ }
   TId           { TId $$ }
-  TWord         { TWord $$ }
   TNum          { TNum $$ }
 
 %%
@@ -50,7 +49,7 @@ BaseSystem
       in LSys $2 ax rules ang st it }
 
 Body
-  : TAxiom TColon TWord
+  : TAxiom TColon WordLS
     TRules TColon RuleList
     TAngle TColon TNum
     TStep TColon TNum
@@ -63,7 +62,11 @@ RuleList
   | RuleList Rule           { $1 ++ [$2] }
 
 Rule
-  : TSym TArrow TWord       { ($1, $3) }
+  : TSym TArrow WordLS       { ($1, $3) }
+
+WordLS
+  : WordLS TSym   { $1 ++ [$2] }
+  | TSym          { [$1] }
 
 
 {
@@ -75,6 +78,9 @@ lexer [] = []
 lexer (c:cs)
   | isSpace c = lexer cs
 
+  -- izq de producciones---
+  | isUpper c && (isArrow (dropWhile isSpace cs)) = TSym c : lexer cs   
+
   -- palabras reservadas o identificadores
   | isAlpha c =
       let (name, rest) = span isAlphaNum (c:cs)
@@ -85,24 +91,25 @@ lexer (c:cs)
       let (num, rest) = span (\x -> isDigit x || x == '.') (c:cs)
       in TNum (read num) : lexer rest
 
+ -- flecha
+  | c == '-' && not (null cs) && head cs == '>' =
+      TArrow : lexer (tail cs)
+
   -- símbolos de la gramática
   | c == '{'  = TLBrace : lexer cs
   | c == '}'  = TRBrace : lexer cs
   | c == ':'  = TColon  : lexer cs
-
-  -- flecha
-  | c == '-' && not (null cs) && head cs == '>' =
-      TArrow : lexer (tail cs)
-
-  -- símbolos del alfabeto del sistema-L
-  | isSymChar c = TSym c : lexer cs
+  | c == '+' = TPlus : lexer cs
+  | c == '-' = TMinus : lexer cs
+  | c == '[' = TLBracket : lexer cs
+  | c == ']' = TRBracket : lexer cs
+ 
 
   | otherwise = error ("Unknown character: " ++ [c])
 
-isSymChar :: Char -> Bool
-isSymChar c =
-     isUpper c      -- F X Y A B ...
-  || c `elem` "+-[]|&^\\/<>"
+isArrow :: [Char] -> Bool
+isArrow  ('-':'>':_) = True     -- -> etc--
+isArrow _ = False
 
 keywordOrId :: String -> Token
 keywordOrId s =
@@ -117,13 +124,15 @@ keywordOrId s =
     "interleave"  -> TInterleave
     "encap"       -> TEncap
     "inherit"     -> TInherit
-    _ | all isUpper s -> TWord s
-      | otherwise     -> TId s
+    _ | (length s == 1) && isUpper (head s ) -> TSym (head s)
+      |otherwise     -> TId s
 
 
 parseString :: String -> LSystem
 parseString = parseLSystem . lexer
 
 parseError :: [Token] -> a
-parseError _ = error "Syntax error"
+parseError toks =
+  error ("Syntax error near tokens: " ++ show (take 10 toks))
+
 }

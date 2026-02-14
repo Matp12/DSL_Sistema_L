@@ -15,6 +15,10 @@ data Token
   | TLBrace
   | TRBrace
   | TColon
+  | TPlus 
+  | TMinus 
+  | TLBracket 
+  | TRBracket 
   | TSym Char
   | TId String
   | TWord String

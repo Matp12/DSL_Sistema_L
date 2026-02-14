@@ -44,7 +44,8 @@ runExample name = do
            -- let result = eval ast
 
             putStrLn "\n=== Cadena Final ==="
-            putStrLn ast
+            print (parseString input)
+
             --      putStrLn ("\n"++ (show (lexer input))) --TOKENS ANDAN           Falta Pretty Printer
           {-  case result of
                 LSys name ax _ ang st it -> do
