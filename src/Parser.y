@@ -20,7 +20,6 @@ import Data.Char
   TUnion        { TUnion }
   TInterleave   { TInterleave }
   TEncap        { TEncap }
-  TInherit      { TInherit }
   TArrow        { TArrow }
   TLBrace       { TLBrace }
   TRBrace       { TRBrace }
@@ -43,7 +42,6 @@ LSystem
   | LSystem TUnion LSystem     { Union $1 $3 }
   | LSystem TInterleave LSystem { Interleave $1 $3 }
   | TEncap LSystem             { Encapsulate $2 }
-  | LSystem TInherit LSystem   { Inherit $1 $3 }
 
 BaseSystem
   : TLSystem TId TLBrace Body TRBrace
@@ -135,7 +133,6 @@ keywordOrId s =
     "union"       -> [TUnion]
     "interleave"  -> [TInterleave]
     "encap"       -> [TEncap]
-    "inherit"     -> [TInherit]
     _ | all isUpper s -> TSym (head s) : lexer (tail s)
       |otherwise     -> [TId s]
 

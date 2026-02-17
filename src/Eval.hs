@@ -28,30 +28,20 @@ eval (LSys n ax rs ang st it) =
   in LSys n final rs ang st it
 
 eval (Union s1 s2) =
-  let LSys n1 ax1 r1 a1 st1 it1 =  s1
-      LSys n2 ax2 r2 a2 st2 it2 =  s2
-  in eval  
-        (LSys ((n1++" union ")++n2)
-        (ax1 ++ ax2)
-        (merge_rules r1 r2)
-        a1 st1 (max it1 it2))
+ eval  
+    (LSys ((name s1++" union ")++name s2)
+    ((axiom s1) ++ (axiom s2))
+    (merge_rules (rules s1) (rules s2))
+    (angle s1) (step s1) (max (iterations s1) (iterations s1)))
 
 eval (Interleave s1 s2) =
-  let LSys _ ax1 r1 a1 st1 it1 = eval s1
-      LSys _ ax2 r2 a2 st2 it2 = eval s2
-  in LSys "interleave"
-     (interleave ax1 ax2)
-     (r1 ++ r2)
-     a1 st1 (max it1 it2)
+  eval 
+    (LSys ("interleave "++ (name s1)++ " "++ (name s2))
+     (interleave (axiom s1) (axiom s2))
+     (merge_rules (rules s1) (rules s2))
+     (angle s1) (step s1) (max (iterations s1) (iterations s1)))
 
 eval (Encapsulate s) =
   let LSys n ax r a st it = eval s
   in LSys n ("[" ++ ax ++ "]") r a st it
 
-eval (Inherit s1 s2) =
-  let LSys _ ax1 r1 a1 st1 it1 = eval s1
-      LSys _ ax2 r2 a2 st2 it2 = eval s2
-  in LSys "inherit"
-     ax1
-     (r1 ++ r2)
-     a1 st1 it1

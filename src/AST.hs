@@ -18,6 +18,5 @@ data LSystem = LSys
   | Union LSystem LSystem
   | Interleave LSystem LSystem
   | Encapsulate LSystem
-  | Inherit LSystem LSystem
   deriving Show
 

@@ -10,7 +10,6 @@ data Token
   | TUnion
   | TInterleave
   | TEncap
-  | TInherit
   | TArrow
   | TLBrace
   | TRBrace
