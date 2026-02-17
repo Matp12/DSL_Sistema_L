@@ -47,7 +47,7 @@ getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: 
 
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 bindir     = "C:\\Users\\mateo\\OneDrive\\Escritorio\\LCC\\LCC_6to_cuatri\\AnalisisLenguajesProg\\TP_FINAL\\.stack-work\\install\\6135d9ec\\bin"
-libdir     = "C:\\Users\\mateo\\OneDrive\\Escritorio\\LCC\\LCC_6to_cuatri\\AnalisisLenguajesProg\\TP_FINAL\\.stack-work\\install\\6135d9ec\\lib\\x86_64-windows-ghc-9.10.3-b42a\\tp-final-0.1.0.0-3g5mY8eCAPB6lYZCKjSBuy-TP_FINAL"
+libdir     = "C:\\Users\\mateo\\OneDrive\\Escritorio\\LCC\\LCC_6to_cuatri\\AnalisisLenguajesProg\\TP_FINAL\\.stack-work\\install\\6135d9ec\\lib\\x86_64-windows-ghc-9.10.3-b42a\\tp-final-0.1.0.0-FtHtPEsaEc2JVsW9Twvnu5-TP_FINAL"
 dynlibdir  = "C:\\Users\\mateo\\OneDrive\\Escritorio\\LCC\\LCC_6to_cuatri\\AnalisisLenguajesProg\\TP_FINAL\\.stack-work\\install\\6135d9ec\\lib\\x86_64-windows-ghc-9.10.3-b42a"
 datadir    = "C:\\Users\\mateo\\OneDrive\\Escritorio\\LCC\\LCC_6to_cuatri\\AnalisisLenguajesProg\\TP_FINAL\\.stack-work\\install\\6135d9ec\\share\\x86_64-windows-ghc-9.10.3-b42a\\tp-final-0.1.0.0"
 libexecdir = "C:\\Users\\mateo\\OneDrive\\Escritorio\\LCC\\LCC_6to_cuatri\\AnalisisLenguajesProg\\TP_FINAL\\.stack-work\\install\\6135d9ec\\libexec\\x86_64-windows-ghc-9.10.3-b42a\\tp-final-0.1.0.0"

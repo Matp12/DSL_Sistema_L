@@ -3,6 +3,7 @@ module Parser where
 import AST
 import Types
 import Data.Char
+import qualified Data.Map as M
 
 }
 
@@ -23,6 +24,8 @@ import Data.Char
   TArrow        { TArrow }
   TLBrace       { TLBrace }
   TRBrace       { TRBrace }
+  TLParen       { TLParen }
+  TRParen       { TRParen }
   TColon        { TColon }
   TSym         { TSym $$ }
   TId           { TId $$ }
@@ -41,12 +44,11 @@ LSystem
   : BaseSystem                 { $1 }
   | LSystem TUnion LSystem     { Union $1 $3 }
   | LSystem TInterleave LSystem { Interleave $1 $3 }
-  | TEncap LSystem             { Encapsulate $2 }
 
 BaseSystem
   : TLSystem TId TLBrace Body TRBrace
     { let (ax, rules, ang, st, it) = $4
-      in LSys $2 ax rules ang st it }
+      in LSys $2 ax (buildRules rules) ang st it }
 
 Body
   : TAxiom TColon WordLS
@@ -62,7 +64,11 @@ RuleList
   | RuleList Rule           { $1 ++ [$2] }
 
 Rule
-  : TSym TArrow WordLS TSemicolon      { ($1, $3) }
+  : TSym TArrow Replace TSemicolon      { ($1, $3) }
+
+Replace
+  :WordLS   {Str $1}
+  |TEncap TLParen LSystem TRParen { Encaps $3 }
 
 WordLS
   : WordLS TSym   { $1 ++ [$2] }
@@ -70,6 +76,14 @@ WordLS
 
 
 {
+buildRules :: [(Char, Replacement)] -> M.Map Char Replacement
+buildRules xs =
+  if length xs /= M.size m
+     then error "Regla duplicada para símbolo"
+     else m
+  where
+    m = M.fromList xs
+
 -- LEXER
 
 skipComment :: String -> String
@@ -107,6 +121,8 @@ lexer (c:cs)
   -- símbolos de la gramática
   | c == '{'  = TLBrace : lexer cs
   | c == '}'  = TRBrace : lexer cs
+  | c == '('  = TLParen : lexer cs
+  | c == ')'  = TRParen : lexer cs  
   | c == ':'  = TColon  : lexer cs
   | c == '+' = TSym c : lexer cs
   | c == '-' = TSym c : lexer cs

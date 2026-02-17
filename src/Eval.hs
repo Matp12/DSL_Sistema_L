@@ -1,12 +1,15 @@
 module Eval where
 import AST
+import qualified Data.Map as M
 
-applyRules :: [(Char,String)] -> String -> String
+applyRules :: M.Map Char Replacement -> String -> String
 applyRules rs w = concatMap replace w
   where
-    replace c = case lookup c rs of
-                  Just r  -> r
-                  Nothing -> [c]
+    replace c =
+      case M.lookup c rs of
+        Just (Str r)   -> r
+        Just (Encaps g) -> "[" ++ axiom (eval g) ++ "]"
+        Nothing        -> [c]
 
 iterateN :: Int -> (a -> a) -> a -> a
 iterateN 0 _ x = x
@@ -18,10 +21,6 @@ interleave xs [] = xs
 interleave [] ys = ys
 
 
-merge_rules:: [(Char,String)] -> [(Char,String)] -> [(Char,String)]
-merge_rules xs ys = let keys = map fst xs in
-  xs ++ filter (\y-> not (fst y `elem` keys)) ys 
-
 eval :: LSystem -> LSystem
 eval (LSys n ax rs ang st it) =
   let final = iterateN it (applyRules rs) ax
@@ -31,17 +30,12 @@ eval (Union s1 s2) =
  eval  
     (LSys ((name s1++" union ")++name s2)
     ((axiom s1) ++ (axiom s2))
-    (merge_rules (rules s1) (rules s2))
+    (M.union (rules s1) (rules s2))
     (angle s1) (step s1) (max (iterations s1) (iterations s1)))
 
 eval (Interleave s1 s2) =
   eval 
     (LSys ("interleave "++ (name s1)++ " "++ (name s2))
      (interleave (axiom s1) (axiom s2))
-     (merge_rules (rules s1) (rules s2))
+     (M.union (rules s1) (rules s2))
      (angle s1) (step s1) (max (iterations s1) (iterations s1)))
-
-eval (Encapsulate s) =
-  let LSys n ax r a st it = eval s
-  in LSys n ("[" ++ ax ++ "]") r a st it
-

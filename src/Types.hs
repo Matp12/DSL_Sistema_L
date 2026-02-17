@@ -13,6 +13,8 @@ data Token
   | TArrow
   | TLBrace
   | TRBrace
+  | TLParen
+  | TRParen
   | TColon
   | TSemicolon
   | TPlus 

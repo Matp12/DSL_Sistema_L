@@ -2,13 +2,8 @@ lsystem Planta {
   axiom: XY
   rules:
     X -> -F;
-    F -> XF;
-  angle: 25
-  step: 1
-  iterations: 4
-}
-
-union
+    F -> 
+encap(    
 lsystem Arbol {
   axiom: YX
   rules:
@@ -17,6 +12,11 @@ lsystem Arbol {
   angle: 30
   step: 1
   iterations: 3
-
+})
+;
+  angle: 25
+  step: 1
+  iterations: 4
 }
+
 
