@@ -7,6 +7,9 @@ import System.Directory (doesFileExist)
 import AST
 import Parser
 import Eval
+import Control.Monad.Writer
+
+import Turtle
 
 ejemplosDir :: FilePath
 ejemplosDir = "Ejemplos"
@@ -41,11 +44,9 @@ runExample name = do
             input <- readFile fullPath
             let ast = parseString input
 
-            let result = eval ast
+            let (result,trace) = runWriter (evalM ast)
 
             putStrLn "\n=== Cadena Final ==="
-            --   print (parseString input)          ---- Lexer Anda
-            --      putStrLn ("\n"++ (show (lexer input))) --TOKENS ANDAN
             case result of
                 LSys name ax _ ang st it -> do
                     putStrLn name
@@ -53,5 +54,11 @@ runExample name = do
                     putStrLn ("\nAngle: " ++ show ang)
                     putStrLn ("Step: " ++ show st)
                     putStrLn ("Iterations: " ++ show it)
+
+                    putStrLn "\n=== Traza Final ==="
+                    mapM_ putStrLn trace
+
+                    putStrLn "\nAbriendo ventana gráfica..."
+                    animateTrace (realToFrac st) (realToFrac ang) trace
+
                 _ -> print result
-          

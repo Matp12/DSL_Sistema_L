@@ -12,6 +12,7 @@ build-type:     Simple
 executable TP_FINAL
   main-is: Main.hs
   other-modules:
+      Turtle
       AST
       Eval
       Parser
@@ -28,5 +29,6 @@ executable TP_FINAL
     , containers
     , directory
     , filepath
+    , gloss
     , mtl
   default-language: Haskell2010

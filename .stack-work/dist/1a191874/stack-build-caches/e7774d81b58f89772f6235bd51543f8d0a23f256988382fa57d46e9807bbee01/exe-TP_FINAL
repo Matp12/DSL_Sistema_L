@@ -5,20 +5,22 @@ C:\Users\mateo\AppData\Local\Programs\stack\x86_64-windows\ghc-9.10.3\lib\x86_64
 ? C:\Users\mateo\AppData\Local\Programs\stack\x86_64-windows\ghc-9.10.3\lib\x86_64-windows-ghc-9.10.3\rts-1.0.2\include\ghcversion.h
 : hash: 7038bb968ecc358729edd5d1e72a638409aaf5ea6ab13ce6ec7f253daa3b6529
 ? C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\.stack-work\dist\1a191874\build\TP_FINAL\autogen\Paths_tp_final.hs
-: hash: 74dc63fcb42c903aafdee34f352dbe6c25dec2a84f39d7d5e2688d96fe495ba0
+: hash: 0fba5d2d5f81468246a06b942cbecd64955a7fb14e8bcea2b9f78aefa8c738c4
 ? C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\.stack-work\dist\1a191874\build\TP_FINAL\autogen\cabal_macros.h
-: hash: d0254a8a6154fac3ae19625cb4e7fcaaed7ab5b12e9ba155fecde59c38e0929d
+: hash: 4e63938c11eb2d0b4b5a55c812920c4c2ddf36fc9215a334e8c1913a40a0435e
 C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\app\Main.hs:
-  hash: 0d4225d80aebc1b061d245ab6b69f18cdbc87ca962c540d71df1ae49166af8eb
+  hash: 970db01e2c6ed75ecf68458ea7c6164fc4510f1f1f23660b983fe9bac865cad2
+C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\app\Turtle.hs:
+  hash: b56d1fc98af9ab328c854f0421cdcfcf9cdd8b47fcf0712ee8ecf7ab2337e3d5
 C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\package.yaml:
-  hash: 19fc9c20353f93536efd77f3b4de5c1de777f21b05875d9ff68e39728b24ecf3
+  hash: cebdacecdd4ab4f229988d740335df330b25cfb1a88c4d37c40880cf5c185cd1
 C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\src\AST.hs:
   hash: 065f663de22fd06f5b22df621d060523032c70c228a6445b2443124510d50890
 C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\src\Eval.hs:
-  hash: 7078ba09631c093c9e7db0b09bc85d1f7987fa92acf58a9a849447896a4a1cb3
+  hash: 6d4dde842add150252b1d6ac1ee584fdad7e098b71db67b5f0126b659a638974
 C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\src\Parser.y:
   hash: 0dc8598943ee4678d7b8ddde640dfb858a4fd35a010aac5d86798054be8b5d27
 C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\src\Types.hs:
   hash: 29e5ffb511bc49f4893e21eba198c1afe5613c7dba73665876cf1da25c8fea69
 C:\Users\mateo\OneDrive\Escritorio\LCC\LCC_6to_cuatri\AnalisisLenguajesProg\TP_FINAL\tp-final.cabal:
-  hash: 10e4d3e4fbdfe972ae1f48c346a132208c076ef7b6fe81d3a091cb64e0ee8c49
+  hash: 1e55b57faf291ac80e931f3e6defcfaf48823ce1656bf5d9ee9555769b702d1e
