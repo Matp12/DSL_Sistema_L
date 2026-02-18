@@ -28,4 +28,5 @@ executable TP_FINAL
     , containers
     , directory
     , filepath
+    , mtl
   default-language: Haskell2010

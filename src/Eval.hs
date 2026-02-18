@@ -1,6 +1,9 @@
 module Eval where
 import AST
 import qualified Data.Map as M
+import Control.Monad.Writer
+
+
 
 applyRules :: M.Map Char Replacement -> String -> String
 applyRules rs w = concatMap replace w
@@ -10,6 +13,8 @@ applyRules rs w = concatMap replace w
         Just (Str r)   -> r
         Just (Encaps g) -> "[" ++ axiom (eval g) ++ "]"
         Nothing        -> [c]
+
+
 
 iterateN :: Int -> (a -> a) -> a -> a
 iterateN 0 _ x = x
