@@ -12,6 +12,7 @@ dependencies:
 - containers
 - mtl
 - gloss
+- parallel
 
 executables:
   TP_FINAL:
@@ -20,4 +21,9 @@ executables:
       - app
       - src
     build-tools:
-          - happy
+        - happy
+    ghc-options:
+      - -O2
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
