@@ -2,15 +2,18 @@ module Eval where
 import AST
 import qualified Data.Map as M
 import Control.Monad.Writer
+import Control.Parallel.Strategies
 
 applyRules :: M.Map Char Replacement -> String -> String
-applyRules rs w = concatMap replace w
+applyRules rs w =
+    foldr (++) "" $ parMap rdeepseq replace w
   where
     replace c =
       case M.lookup c rs of
         Just (Str r)    -> r
-        Just (Encaps g) -> "[" ++ axiom (fst(runWriter (evalM g))) ++ "]"
+        Just (Encaps g) -> "[" ++ last (snd (runWriter (evalM g))) ++ "]"
         Nothing         -> [c]
+
 
 stepM :: M.Map Char Replacement -> String -> Writer [String] String
 stepM rs w = do
