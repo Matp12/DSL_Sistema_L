@@ -8,7 +8,7 @@ import AST
 import Parser
 import Eval
 import Control.Monad.Writer
-
+import Control.Monad(when)
 import Turtle
 
 ejemplosDir :: FilePath
@@ -17,15 +17,29 @@ ejemplosDir = "Ejemplos"
 main :: IO ()
 main = do
     args <- getArgs
-    case args of
-        [name] -> runExample name
+    let (flags, names) = partitionArgs args
+    case names of
+        [name] -> runExample name flags
         _ -> do
-            putStrLn "Uso: stack run NOMBRE"
+            putStrLn (show args)
+            putStrLn "Uso: stack run -- [FLAGS] NOMBRE "
             putStrLn "El archivo debe estar dentro de la carpeta Ejemplos/"
+            putStrLn "las flags son: "
+            putStrLn "trz: muestra la traza"
+            putStrLn "ext: muestra el sistema resultante"
+            putStrLn "grf: realiza el gráfico estilo turtle(solo toma F como paso)"
             exitFailure
 
-runExample :: String -> IO ()
-runExample name = do
+-- Separar flags y argumentos
+partitionArgs :: [String] -> ([String], [String])
+partitionArgs = foldr f ([], [])
+  where
+    f arg (fs, ns)
+      | arg `elem` ["-trz", "-ext","-grf"] = (arg:fs, ns)
+      | otherwise                  = (fs, arg:ns)
+
+runExample :: String -> [String] -> IO ()
+runExample name flags = do
     let fileName =
             if takeExtension name == ".lis"
                 then name
@@ -46,19 +60,29 @@ runExample name = do
 
             let (result,trace) = runWriter (evalM ast)
 
-            putStrLn "\n=== Cadena Final ==="
+            
             case result of
-                LSys name ax _ ang st it -> do
-                    putStrLn name
-                    putStrLn ax
-                    putStrLn ("\nAngle: " ++ show ang)
-                    putStrLn ("Step: " ++ show st)
-                    putStrLn ("Iterations: " ++ show it)
+                LSys name ax _ ang st it ->
+                    do
+                    (when (elem "-ext" flags) 
+                        (do
+                            putStrLn "\n=== LSistem Final ==="
+                            putStrLn name
+                            putStrLn ax
+                            putStrLn ("\nAngle: " ++ show ang)
+                            putStrLn ("Step: " ++ show st)
+                            putStrLn ("Iterations: " ++ show it)))
+                    (when (elem "-trz" flags)
+                        (do
+                            putStrLn "\n=== Traza Final ==="
+                            mapM_ putStrLn trace))
+                    
+                    (when (elem "-grf" flags)
+                        (do        
+                            putStrLn "\nAbriendo ventana gráfica..."
+                            animateTrace (realToFrac st) (realToFrac ang) trace))
+                    (when (True)
+                        (putStrLn "finalizado"))
 
-                    putStrLn "\n=== Traza Final ==="
-                    mapM_ putStrLn trace
-
-                    putStrLn "\nAbriendo ventana gráfica..."
-                    animateTrace (realToFrac st) (realToFrac ang) trace
 
                 _ -> print result
