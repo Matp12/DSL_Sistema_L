@@ -94,6 +94,7 @@ Cuando aparece el símbolo A, se ejecuta el sistema G₂ con sus propios paráme
 
 ## Gramática
 La siguiente gramatica define formalmente el lenguaje:
+```
 LSystem ::= BaseSystem
 | Lsystem union LSystem
 | Lsystem interleave LSystem
@@ -112,3 +113,4 @@ Word ::= Word Symbol
 | Symbol
 donde Symbol es cualquier caracter en may´uscula, Id es una string sin espacios y number es
 cualquier n´umero
+```
