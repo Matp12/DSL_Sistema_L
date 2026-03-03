@@ -1,0 +1,9 @@
+lsystem circles {
+		axiom: F+++F+++F+++F
+		rules:
+			F->F[-F-F-F][+F];
+		angle: 30
+		step: 5
+		iterations: 8
+
+}

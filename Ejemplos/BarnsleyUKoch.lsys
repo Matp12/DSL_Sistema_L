@@ -6,5 +6,11 @@ lsystem Planta {
   step: 3
   iterations: 5
 }
-
-
+union
+lsystem Koch {
+axiom: Y--Y--Y
+rules: Y->FY+FY--FY+FY;
+angle: 60
+step: 5
+iterations: 7
+}

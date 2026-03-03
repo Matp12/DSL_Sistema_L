@@ -1,0 +1,9 @@
+lsystem cuadrilla {
+		axiom: F+F+F+F
+		rules:
+			F->FF[+F+F+F];
+		angle: 90
+		step: 5
+		iterations: 5 
+
+}

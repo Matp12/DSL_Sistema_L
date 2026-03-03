@@ -1,0 +1,17 @@
+lsystem Sierpinski {
+axiom: F-F-F
+rules: 
+	F -> F[-F-F]F;
+	
+angle: 120
+step: 5
+iterations: 5
+}
+interleave
+lsystem Koch {
+axiom: X--X--X
+rules: X->F+F--F+F;
+angle: 60
+step: 5
+iterations: 10
+}

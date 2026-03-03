@@ -1,0 +1,15 @@
+lsystem Sierpinsky {
+	axiom: F--F--F
+	rules: 
+		F -> X[--X--X]X;
+		X -> encap(lsystem Koch {
+			axiom: F--F--F
+			rules: F->F+F--F+F;
+			angle: 60
+			step: 5
+			iterations: 3
+			});	
+	angle: 60
+	step: 5
+	iterations: 2
+}

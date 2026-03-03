@@ -1,0 +1,17 @@
+lsystem cuadrado {
+		axiom: X
+		rules:
+			X-> encap(
+			lsystem cuadrado {
+				axiom: F
+				rules:
+					F -> F[++F++F++F];
+				angle: 45
+				step: 8
+				iterations: 1
+			});
+			F->-X;
+		angle: 45
+		step: 8
+		iterations: 9
+}

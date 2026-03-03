@@ -1,0 +1,9 @@
+lsystem Sierpinsky {
+axiom: F-F-F
+rules: 
+	F -> F[-F-F]F;
+	
+angle: 120
+step: 5
+iterations: 7
+}

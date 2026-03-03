@@ -1,0 +1,10 @@
+lsystem arbol1 {
+		axiom: F
+		rules:
+			F->FX[+F][-F];
+			X->F;
+		angle: 45
+		step: 5
+		iterations: 8
+
+}

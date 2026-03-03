@@ -1,0 +1,9 @@
+lsystem roots {
+		axiom: F++F++F++F
+		rules:
+			F->F[+F-F];
+		angle: 45
+		step: 5
+		iterations: 5 
+
+}
