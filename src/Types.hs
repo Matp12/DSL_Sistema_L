@@ -10,11 +10,17 @@ data Token
   | TUnion
   | TInterleave
   | TEncap
-  | TInherit
   | TArrow
   | TLBrace
   | TRBrace
+  | TLParen
+  | TRParen
   | TColon
+  | TSemicolon
+  | TPlus 
+  | TMinus 
+  | TLBracket 
+  | TRBracket 
   | TSym Char
   | TId String
   | TWord String
