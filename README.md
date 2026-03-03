@@ -92,25 +92,86 @@ A -> encaps(G₂)
 
 Cuando aparece el símbolo A, se ejecuta el sistema G₂ con sus propios parámetros y el resultado reemplaza a A.
 
-## Gramática
+### Gramática
 La siguiente gramatica define formalmente el lenguaje:
 ```
 LSystem ::= BaseSystem
-| Lsystem union LSystem
-| Lsystem interleave LSystem
+  | Lsystem union LSystem
+  | Lsystem interleave LSystem
+
 BaseSystem ::= lsystem Id {Body}
+
 Body ::= axiom : Word
+
 rules : RuleList
+
 angle : Number
+
 step : Number
+
 iterations : Number
+
 RuleList ::= Rule
-| RuleList Rule
-Rule ::= Symbol −→ Replace;
+  | RuleList Rule
+
+Rule ::= Symbol -> Replace;
+
 Replace ::= Word
-| encap(Lsystem)
+  | encap(Lsystem)
+
 Word ::= Word Symbol
 | Symbol
-donde Symbol es cualquier caracter en may´uscula, Id es una string sin espacios y number es
-cualquier n´umero
 ```
+donde Symbol es cualquier caracter en mayúscula, Id es una string sin espacios y number es
+cualquier número
+### Aclaraciones
+Para el apartado gráfico en la palabra resultante el símbolo ’F’ significa dibujar hacia adelante, ’+’
+significa vuelta hacia la izquierda, ’-’ significa vuelta hacia la derecha , ’[’ significa guardar el punto
+actual , y ’]’ retomar el último punto. Cualquier otro símbolo para el apartado gráfico se
+ignora por completo.
+
+## Dependencias
+El proyecto fue desarrollado en Haskell y requiere las siguientes librerías:
+- base (>= 4.7 && < 5) (biblioteca estándar del lenguaje)
+- containers (estructuras de datos como Map y Set)
+- array (manejo de arreglos)
+- directory (operaciones sobre el sistema de archivos)
+- filepath (manipulación de rutas de archivos)
+- mtl (soporte para transformadores de mónadas)
+- gloss (renderizado gráfico utilizado para la visualización del sistema L)
+- parallel (soporte para evaluación paralela)
+El proyecto se compila utilizando Stack como herramienta de construcción.
+
+## Manual de Uso
+### Instrucciónes de compilación
+Stack se encarga de instalar la versión correcta de GHC, instalar los paquetes necesarios y compilar el
+proyecto. Para las primeras dos, basta con abrir una terminal en el directorio del proyecto y ejecutar:
+```shell
+stack setup
+```
+una vez listo se puede compilar con:
+```shell
+stack build
+```
+### Instrucciones de ejecución
+Para ejecutar el programa basta con ejecutar:
+```shell
+stack run -- -[FLAGS] programa.lsys
+```
+Donde el programa se encuentra dentro de la carpeta Ejemplos y las opciones de flags son:
+- -ext (exit del axioma luego de las iteraciones)
+- -trz (traza de la evolución del sistema iteración por iteración)
+- -grf (gráfica visual de la evolución del sistema)
+### Manejo del programa
+- Esc para salir de la visualización o en su defecto doble CTRL+C en la terminal
+- Se puede desplazar arrastrando el click izquierdo del ratón
+- Con la rueda realiza zoom
+
+## Bibliografía
+Para mayor conocimiento, puede consultar los siguientes articulos de Wikipedia que sirvieron de ayuda
+e inspiracion en este trabajo:
+
+- Wikipedia Sistema-L : https://es.wikipedia.org/wiki/Sistema-L
+- Introducción a Sistema-L y Fractales: https://es.scribd.com/document/650879180/L-SYSTEM-Trabajo-Final-profesorado
+- Copo de nieve de Koch: https://es.wikipedia.org/wiki/Copo_de_nieve_de_Koch
+- Triángulo de Sierpinski: https://es.wikipedia.org/wiki/Tri%C3%A1ngulo_de_Sierpinski
