@@ -92,4 +92,23 @@ A -> encaps(G₂)
 
 Cuando aparece el símbolo A, se ejecuta el sistema G₂ con sus propios parámetros y el resultado reemplaza a A.
 
-En este caso, el sistema encapsulado conserva sus propios valores de angle, step e iterations.
+## Gramática
+La siguiente gramatica define formalmente el lenguaje:
+LSystem ::= BaseSystem
+| Lsystem union LSystem
+| Lsystem interleave LSystem
+BaseSystem ::= lsystem Id {Body}
+Body ::= axiom : Word
+rules : RuleList
+angle : Number
+step : Number
+iterations : Number
+RuleList ::= Rule
+| RuleList Rule
+Rule ::= Symbol −→ Replace;
+Replace ::= Word
+| encap(Lsystem)
+Word ::= Word Symbol
+| Symbol
+donde Symbol es cualquier caracter en may´uscula, Id es una string sin espacios y number es
+cualquier n´umero
